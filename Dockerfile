@@ -1,4 +1,4 @@
-FROM library/alpine:20200319
+FROM library/alpine:20200428
 RUN apk add --no-cache \
     php7-fpm=7.3.17-r2
 

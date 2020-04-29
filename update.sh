@@ -17,7 +17,7 @@ assert_dependency "jq"
 assert_dependency "curl"
 
 # Alpine Linux
-update_image "library/alpine" "Alpine" "false" "\d{8}"
+update_image "library/alpine" "Alpine Linux" "false" "\d{8}"
 
 # Packages
 update_pkg "php7-fpm" "PHP-FPM" "true" "https://pkgs.alpinelinux.org/package/edge/community/x86_64" "(\d+\.)+\d+-r\d+"
