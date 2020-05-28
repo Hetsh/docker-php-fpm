@@ -1,5 +1,5 @@
 # PHP-FPM
-PHP FastCGI Process Manager.
+Super small and easy to setup PHP FastCGI Process Manager.
 
 ## Running the server
 ```bash
@@ -13,7 +13,7 @@ docker stop php-fpm
 ```
 
 ## Configuration
-Modules need to be enabled via a custom `php.ini` file. It can be mounted readonly:
+Adjustments can be made via a custom `php.ini` file. It can be mounted readonly:
 ```bash
 --mount type=bind,readonly,source="/path/to/php.ini",target="/etc/php7/php.ini"
 ```
