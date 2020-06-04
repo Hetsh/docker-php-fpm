@@ -23,7 +23,7 @@ RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
     sed -i "s|^;env\[PATH\]|env\[PATH\]|" "$WWW_CONF" && \
     sed -i "s|^listen.*|listen = 9000\n;listen = /run/php7/php-fpm.sock|" "$WWW_CONF" && \
     sed -i "s|^;listen\.owner.*|listen.owner = $APP_USER|" "$WWW_CONF" && \
-    sed -i "s|^;listen\.group.*|listen.owner = $APP_GROUP|" "$WWW_CONF" && \
+    sed -i "s|^;listen\.group.*|listen.group = $APP_GROUP|" "$WWW_CONF" && \
     sed -i "s|^;catch_workers_output.*|catch_workers_output = yes|" "$WWW_CONF" && \
     sed -i "s|^;decorate_workers_output.*|decorate_workers_output = no|" "$WWW_CONF"
 
