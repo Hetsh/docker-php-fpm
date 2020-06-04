@@ -15,12 +15,18 @@ RUN sed -i "s|$OLD_USER:x:$APP_UID:$APP_GID:X Font Server:/etc/X11/fs:|$APP_USER
 # Configuration
 ARG PHP_DIR="/etc/php7"
 ARG INI_CONF="$PHP_DIR/php.ini"
+ARG FPM_CONF="$PHP_DIR/php-fpm.conf"
+ARG LOG_DIR="/var/log/php7"
 ARG CONF_DIR="$PHP_DIR/php-fpm.d"
 ARG WWW_CONF="$CONF_DIR/www.conf"
 RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
+    sed -i "s|^;daemonize.*|daemonize = no|" "$FPM_CONF" && \
+    sed -i "s|^;error_log =.*|error_log = $LOG_DIR/error.log|" "$FPM_CONF" && \
+    sed -i "s|^;access.log =.*|access.log = $LOG_DIR/access.log|" "$WWW_CONF" && \
     sed -i "s|^user.*|user = $APP_USER|" "$WWW_CONF" && \
     sed -i "s|^group.*|group = $APP_GROUP|" "$WWW_CONF" && \
     sed -i "s|^;env\[PATH\]|env\[PATH\]|" "$WWW_CONF" && \
+    sed -i "s|^;clear_env =.*|clear_env = no|" "$WWW_CONF" && \
     sed -i "s|^listen.*|listen = 9000\n;listen = /run/php7/php-fpm.sock|" "$WWW_CONF" && \
     sed -i "s|^;listen\.owner.*|listen.owner = $APP_USER|" "$WWW_CONF" && \
     sed -i "s|^;listen\.group.*|listen.group = $APP_GROUP|" "$WWW_CONF" && \
@@ -30,7 +36,6 @@ RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
 # Volumes
 ARG SRV_DIR="/srv"
 ARG SOCK_DIR="/run/php7"
-ARG LOG_DIR="/var/log/php7"
 RUN mkdir "$SOCK_DIR" && \
     chmod 750 "$SOCK_DIR" && \
     chown -R "$APP_USER":"$APP_GROUP" "$SRV_DIR" "$SOCK_DIR" "$LOG_DIR"
@@ -40,4 +45,4 @@ VOLUME ["$CONF_DIR", "$SRV_DIR", "$SOCK_DIR" , "$LOG_DIR"]
 EXPOSE 9000/tcp
 
 WORKDIR "$SRV_DIR"
-ENTRYPOINT ["php-fpm7", "--nodaemonize"]
+ENTRYPOINT ["php-fpm7"]
