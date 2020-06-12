@@ -20,8 +20,9 @@ ARG LOG_DIR="/var/log/php7"
 ARG CONF_DIR="$PHP_DIR/php-fpm.d"
 ARG WWW_CONF="$CONF_DIR/www.conf"
 RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
+    sed -i "s|^;error_log =.*|error_log = $LOG_DIR/error.log|" "$INI_CONF" && \
     sed -i "s|^;daemonize.*|daemonize = no|" "$FPM_CONF" && \
-    sed -i "s|^;error_log =.*|error_log = $LOG_DIR/error.log|" "$FPM_CONF" && \
+    sed -i "s|^;log_level =.*|log_level = notice|" "$FPM_CONF" && \
     sed -i "s|^;access.log =.*|access.log = $LOG_DIR/access.log|" "$WWW_CONF" && \
     sed -i "s|^user.*|user = $APP_USER|" "$WWW_CONF" && \
     sed -i "s|^group.*|group = $APP_GROUP|" "$WWW_CONF" && \
