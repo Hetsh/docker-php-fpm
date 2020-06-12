@@ -20,7 +20,9 @@ assert_dependency "curl"
 update_image "library/alpine" "Alpine Linux" "false" "\d{8}"
 
 # Packages
-update_pkg "php7-fpm" "PHP-FPM" "true" "https://pkgs.alpinelinux.org/package/edge/community/x86_64" "(\d+\.)+\d+-r\d+"
+PKG_URL="https://pkgs.alpinelinux.org/package/edge/community/x86_64"
+update_pkg "php7" "PHP" "false" "$PKG_URL" "(\d+\.)+\d+-r\d+"
+update_pkg "php7-fpm" "PHP-FPM" "true" "$PKG_URL" "(\d+\.)+\d+-r\d+"
 
 if ! updates_available; then
 	echo "No updates available."

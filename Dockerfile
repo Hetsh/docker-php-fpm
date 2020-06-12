@@ -1,5 +1,6 @@
 FROM library/alpine:20200428
 RUN apk add --no-cache \
+    php7=7.3.19-r0\
     php7-fpm=7.3.19-r0
 
 # App user
@@ -20,7 +21,7 @@ ARG LOG_DIR="/var/log/php7"
 ARG CONF_DIR="$PHP_DIR/php-fpm.d"
 ARG WWW_CONF="$CONF_DIR/www.conf"
 RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
-    sed -i "s|^;error_log =.*|error_log = $LOG_DIR/error.log|" "$INI_CONF" && \
+    sed -i "s|^;error_log = syslog|error_log = $LOG_DIR/error.log|" "$INI_CONF" && \
     sed -i "s|^;daemonize.*|daemonize = no|" "$FPM_CONF" && \
     sed -i "s|^;log_level =.*|log_level = notice|" "$FPM_CONF" && \
     sed -i "s|^;access.log =.*|access.log = $LOG_DIR/access.log|" "$WWW_CONF" && \
