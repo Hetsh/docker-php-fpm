@@ -1,7 +1,7 @@
 FROM library/alpine:20200428
 RUN apk add --no-cache \
-    php7=7.3.19-r0\
-    php7-fpm=7.3.19-r0
+    php7=7.4.7-r0\
+    php7-fpm=7.4.7-r0
 
 # App user
 ARG OLD_USER="xfs"
