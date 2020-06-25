@@ -24,6 +24,7 @@ docker build --tag "$APP_NAME" .
 if confirm_action "Test image?"; then
 	docker run \
 	--rm \
+	--tty \
 	--interactive \
 	--publish 9000:9000/tcp \
 	--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
