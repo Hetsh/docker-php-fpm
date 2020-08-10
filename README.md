@@ -19,11 +19,12 @@ Adjustments can be made via a custom `php.ini` file. It can be mounted readonly:
 ```
 
 ## Automate startup and shutdown via systemd
+The systemd unit can be found in my GitHub [repository](https://github.com/Hetsh/docker-php-fpm).
 ```bash
 systemctl enable php-fpm.service --now
 ```
-The systemd unit can be found in my [GitHub](https://github.com/Hetsh/docker-php-fpm) repository.
-You just have to alter the path to your app.
+By default, the systemd service assumes `/srv` for website data and `/etc/localtime` for timezone.
+Since this is a personal systemd unit file, you might need to adjust some parameters to suit your setup.
 
 ## Fork Me!
 This is an open project (visit [GitHub](https://github.com/Hetsh/docker-php-fpm)). Please feel free to ask questions, file an issue or contribute to it.
