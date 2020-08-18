@@ -25,7 +25,7 @@ update_pkg "php7" "PHP" "false" "$PKG_URL" "(\d+\.)+\d+-r\d+"
 update_pkg "php7-fpm" "PHP-FPM" "true" "$PKG_URL" "(\d+\.)+\d+-r\d+"
 
 if ! updates_available; then
-	echo "No updates available."
+	#echo "No updates available."
 	exit 0
 fi
 
