@@ -32,5 +32,5 @@ if [ "${1-}" = "--test" ]; then
 	--publish 9000:9000/tcp \
 	--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
 	--name "$APP_NAME" \
-	"$APP_NAME"
+	"$APP_TAG"
 fi

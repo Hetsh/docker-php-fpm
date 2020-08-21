@@ -41,7 +41,7 @@ ARG SOCK_DIR="/run/php7"
 RUN mkdir "$SOCK_DIR" && \
     chmod 750 "$SOCK_DIR" && \
     chown -R "$APP_USER":"$APP_GROUP" "$SRV_DIR" "$SOCK_DIR" "$LOG_DIR"
-VOLUME ["$CONF_DIR", "$SRV_DIR", "$SOCK_DIR" , "$LOG_DIR"]
+VOLUME ["$SRV_DIR", "$SOCK_DIR" , "$LOG_DIR"]
 
 #      PHP-FPM
 EXPOSE 9000/tcp
