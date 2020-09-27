@@ -1,15 +1,15 @@
 FROM library/alpine:20200917
 RUN apk add --no-cache \
-    php7=7.4.10-r1\
-    php7-fpm=7.4.10-r1
+    php7=7.4.10-r2\
+    php7-fpm=7.4.10-r2
 
 # App user
 ARG OLD_USER="xfs"
 ARG APP_USER="http"
-ARG	APP_UID=33
+ARG APP_UID=33
 ARG OLD_GROUP="xfs"
 ARG APP_GROUP="http"
-ARG	APP_GID=33
+ARG APP_GID=33
 RUN sed -i "s|$OLD_USER:x:$APP_UID:$APP_GID:X Font Server:/etc/X11/fs:|$APP_USER:x:$APP_UID:$APP_GID:::|" /etc/passwd && \
     sed -i "s|$OLD_GROUP:x:$APP_GID:$OLD_USER|$APP_GROUP:x:$APP_GID:|" /etc/group
 
