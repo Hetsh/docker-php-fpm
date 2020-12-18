@@ -1,4 +1,4 @@
-FROM library/alpine:20200917
+FROM library/alpine:20201218
 RUN apk add --no-cache \
     php7=7.4.13-r1\
     php7-fpm=7.4.13-r1
