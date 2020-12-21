@@ -1,5 +1,5 @@
 [Unit]
-Description=PHP FastCGI Process Manager
+Description=PHP7 FastCGI Process Manager
 After=docker.service
 Requires=docker.service
 
@@ -9,10 +9,10 @@ ExecStartPre=-/bin/docker create \
               --publish 9000:9000/tcp \
               --mount type=bind,source="/srv",target="/srv" \
               --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
-              --name php-fpm \
-              hetsh/php-fpm
-ExecStart=/bin/docker start --attach php-fpm
-ExecStop=/bin/docker stop php-fpm
+              --name php7-fpm \
+              hetsh/php7-fpm
+ExecStart=/bin/docker start --attach php7-fpm
+ExecStop=/bin/docker stop php7-fpm
 
 [Install]
 WantedBy=multi-user.target
