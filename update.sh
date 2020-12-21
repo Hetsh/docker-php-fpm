@@ -22,7 +22,7 @@ update_image "library/alpine" "Alpine Linux" "false" "\d{8}"
 # Packages
 PKG_URL="https://pkgs.alpinelinux.org/package/edge/community/x86_64"
 update_pkg "php7" "PHP7" "false" "$PKG_URL" "(\d+\.)+\d+-r\d+"
-update_pkg "php7-fpm" "PHP7-FPM" "true" "$PKG_URL" "(\d+\.)+\d+-r\d+"
+update_pkg "php7-fpm" "PHP7 FPM" "true" "$PKG_URL" "(\d+\.)+\d+-r\d+"
 
 if ! updates_available; then
 	#echo "No updates available."
