@@ -21,19 +21,19 @@ ARG LOG_DIR="/var/log/php7"
 ARG CONF_DIR="$PHP_DIR/php-fpm.d"
 ARG WWW_CONF="$CONF_DIR/www.conf"
 RUN sed -i "s|^include_path|;include_path|" "$INI_CONF" && \
-    sed -i "s|^;error_log = syslog|error_log = $LOG_DIR/error.log|" "$INI_CONF" && \
-    sed -i "s|^;daemonize.*|daemonize = no|" "$FPM_CONF" && \
-    sed -i "s|^;log_level =.*|log_level = notice|" "$FPM_CONF" && \
-    sed -i "s|^;access.log =.*|access.log = $LOG_DIR/access.log|" "$WWW_CONF" && \
-    sed -i "s|^user.*|user = $APP_USER|" "$WWW_CONF" && \
-    sed -i "s|^group.*|group = $APP_GROUP|" "$WWW_CONF" && \
+    sed -i "s|^;error_log[ =]\+php_errors\.log|error_log = $LOG_DIR/error\.log|" "$INI_CONF" && \
+    sed -i "s|^;daemonize[ =].*|daemonize = no|" "$FPM_CONF" && \
+    sed -i "s|^;log_level[ =].*|log_level = notice|" "$FPM_CONF" && \
+    sed -i "s|^;access\.log[ =].*|access\.log = $LOG_DIR/access\.log|" "$WWW_CONF" && \
+    sed -i "s|^user[ =].*|user = $APP_USER|" "$WWW_CONF" && \
+    sed -i "s|^group[ =].*|group = $APP_GROUP|" "$WWW_CONF" && \
     sed -i "s|^;env\[PATH\]|env\[PATH\]|" "$WWW_CONF" && \
-    sed -i "s|^;clear_env =.*|clear_env = no|" "$WWW_CONF" && \
+    sed -i "s|^;clear_env[ =].*|clear_env = no|" "$WWW_CONF" && \
     sed -i "s|^listen.*|listen = 9000\n;listen = /run/php7/php-fpm.sock|" "$WWW_CONF" && \
-    sed -i "s|^;listen\.owner.*|listen.owner = $APP_USER|" "$WWW_CONF" && \
-    sed -i "s|^;listen\.group.*|listen.group = $APP_GROUP|" "$WWW_CONF" && \
-    sed -i "s|^;catch_workers_output.*|catch_workers_output = yes|" "$WWW_CONF" && \
-    sed -i "s|^;decorate_workers_output.*|decorate_workers_output = no|" "$WWW_CONF"
+    sed -i "s|^;listen\.owner[ =].*|listen.owner = $APP_USER|" "$WWW_CONF" && \
+    sed -i "s|^;listen\.group[ =].*|listen.group = $APP_GROUP|" "$WWW_CONF" && \
+    sed -i "s|^;catch_workers_output[ =].*|catch_workers_output = yes|" "$WWW_CONF" && \
+    sed -i "s|^;decorate_workers_output[ =].*|decorate_workers_output = no|" "$WWW_CONF"
 
 # Volumes
 ARG SRV_DIR="/srv"
